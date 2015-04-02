@@ -1,9 +1,0 @@
-/applicationContext.xml
-/com
-/daoContext.xml
-/eventContext.xml
-/fishing.properties
-/jdbc.properties
-/log4j.properties
-/serviceContext.xml
-/spring-mvc.xml
