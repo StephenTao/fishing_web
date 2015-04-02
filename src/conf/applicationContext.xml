@@ -26,33 +26,22 @@
     </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="${master.jdbc.driverClassName}"></property>
-        <property name="jdbcUrl" value="${master.jdbc.url}"></property>
-        <property name="user" value="${master.jdbc.username}"></property>
-        <property name="password" value="${master.jdbc.password}"></property>
-        <property name="maxPoolSize" value="${master.jdbc.maxPoolSize}" />
-        <property name="minPoolSize" value="${master.jdbc.minPoolSize}" />
-        <property name="acquireIncrement" value="${master.jdbc.acquireIncrement}" />
-        <property name="initialPoolSize" value="${master.jdbc.initialPoolSize}"></property>
-        <property name="testConnectionOnCheckout" value="${master.jdbc.testConnectionOnCheckout}"></property>
-        <property name="idleConnectionTestPeriod" value="${master.jdbc.idleConnectionTestPeriod}"></property>
-        <property name="preferredTestQuery" value="${master.jdbc.preferredTestQuery}"></property>
-        <property name="maxIdleTime" value="${master.jdbc.maxIdleTime}"></property>
+        <property name="driverClass" value="${jdbc.driverClassName}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+        <property name="minPoolSize" value="${jdbc.minPoolSize}" />
+        <property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+        <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
+        <property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"></property>
+        <property name="preferredTestQuery" value="${jdbc.preferredTestQuery}"></property>
+        <property name="maxIdleTime" value="${jdbc.maxIdleTime}"></property>
     </bean>
 
     <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
-    </bean>
-<!-- 
-    <util:set id="accessMasterKeys">
-        <value>delete</value>
-        <value>add</value>
-        <value>update</value>
-        <value>save</value>
-    </util:set>
-
-    <bean id="dataSourceAdvice" class="com.augmentum.common.ds.DataSourceAdvice">
-        <property name="accessMasterKeys" ref="accessMasterKeys"></property>
     </bean>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -67,10 +56,8 @@
 
     <aop:config>
         <aop:pointcut id="pc" expression="execution(* com.augmentum.fishing.dao..*.*(..)) || execution(* com.augmentum.common.mybatis..*.*(..))" />
-        <aop:advisor pointcut-ref="pc" advice-ref="dataSourceAdvice" order="1" />
-        <aop:advisor pointcut-ref="pc" advice-ref="txAdvice" order="2" />
+        <aop:advisor pointcut-ref="pc" advice-ref="txAdvice" order="1" />
     </aop:config>
-     -->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />

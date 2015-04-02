@@ -75,5 +75,4 @@ public class JsonMessage {
         return new SuccessMsg(code, o);
     }
 
-
 }

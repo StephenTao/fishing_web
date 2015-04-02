@@ -23,7 +23,7 @@
         ">
     <!-- 启用spring mvc 注解 -->
     <context:annotation-config />
-    
+
     <mvc:annotation-driven />
     <mvc:resources mapping="/static/**" location="/static/" />
     <!-- 设置使用注解的类所在的jar包 -->
@@ -37,4 +37,5 @@
         </mvc:interceptor>
     </mvc:interceptors>
  -->
+
 </beans>
