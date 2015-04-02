@@ -21,7 +21,6 @@ import com.augmentum.fishing.dto.UserDTO;
 public class SessionFilter implements Filter {
 
     public SessionFilter() {
-
     }
 
     @Override

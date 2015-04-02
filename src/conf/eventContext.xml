@@ -31,20 +31,20 @@
           <property name="taskExecutor" ref="taskExecutor"></property>
           <property name="events">
                <map>
-               <!-- 
-                    <entry key="deleteOrganization">
+                    <entry key="addUserObserver">
                         <list>
-                           <ref bean="deleteOrganizationObserver"></ref>
+                           <ref bean="addUserObserver"></ref>
                         </list>
                     </entry>
-                     -->
               </map>
           </property>
       </bean>
-<!-- 
-    <bean id="deleteOrganizationObserver" class="com.augmentum.its.observer.DeleteOrganizationObserver">
+
+    <bean id="addUserObserver" class="com.augmentum.fishing.observer.AddUserObserver">
         <property name="asyn" value="true"></property>
+        <!-- 
         <property name="userService" ref="userService"></property>
+         -->
     </bean>
- -->
+
 </beans>

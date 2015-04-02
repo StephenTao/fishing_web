@@ -9,4 +9,9 @@ public class Constants {
     public static final String REQUEST = "request";
     public static final String EVENT_BEFORE_LOGIN = "beforeLogin";
 
+    // I18N key
+    public static final String LOCALE = "locale";
+    public static final String LOCALE_ZH_CN = "zh_CN";
+    public static final String LOCALE_EN_US = "en_US";
+
 }

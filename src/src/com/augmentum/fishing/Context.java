@@ -1,6 +1,7 @@
 package com.augmentum.fishing;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import com.augmentum.fishing.dto.UserDTO;
 
@@ -53,6 +54,15 @@ public class Context {
     public UserDTO getUser() {
         UserDTO userDTO = (UserDTO) values.get(Constants.USER);
         return userDTO;
+    }
+
+    public Locale getLocale() {
+        String locale = (String) values.get(Constants.LOCALE);
+        if (Constants.LOCALE_EN_US.equals(locale)) {
+            return Locale.US;
+        } else {
+            return Locale.CHINA;
+        }
     }
 
 }
