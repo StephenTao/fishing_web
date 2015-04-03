@@ -24,18 +24,52 @@
     <!-- 启用spring mvc 注解 -->
     <context:annotation-config />
 
+    <!-- 默认的注解映射的支持 -->
+    <!-- <mvc:annotation-driven /> 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是
+    spring MVC为@Controllers分发请求所必须的。 -->
     <mvc:annotation-driven />
+
+    <!-- 静态资源的访问（二选一） -->
+    <!-- 对静态资源文件的访问  方案一 （二选一） -->
+    <!-- <mvc:default-servlet-handler/> 使用默认的Servlet来响应静态文件 -->
+    <mvc:default-servlet-handler/>
+    <!-- 对静态资源文件的访问[spring3.0.4]以后 方案二 （二选一）-->
+    <!-- 匹配URL /static/** 的URL被当做静态资源，由Spring读出到内存中再响应http -->
     <mvc:resources mapping="/static/**" location="/static/" />
-    <!-- 设置使用注解的类所在的jar包 -->
+
+    <!-- 自动扫描的包名 ，扫描指定的包中的类上的注解-->
+    <!-- 常用的注解:
+        @Controller 声明Action组件
+        @Service    声明Service组件    @Service("myMovieLister") 
+        @Repository 声明Dao组件
+        @Component   泛指组件, 当不好归类时. 
+        @RequestMapping("/menu")  请求映射
+        @Resource  用于注入，( j2ee提供的 ) 默认按名称装配，@Resource(name="beanName") 
+        @Autowired 用于注入，(srping提供的) 默认按类型装配 
+        @Transactional( rollbackFor={Exception.class}) 事务管理
+        @ResponseBody
+        @Scope("prototype")   设定bean的作用域
+     -->
     <context:component-scan base-package="com.**.controller.**" />
 
-<!-- 
+    <!-- 视图解释类 -->
+    <!-- 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    </bean>
+     -->
+
+    <!-- 拦截器 -->
+    <!-- <mvc:interceptors/>会为每一个HandlerMapping，注入一个拦截器 -->
+    <!-- 
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/admin/**" />
             <bean class="com.augmentum.common.interceptor.PrivilegeInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
- -->
+    -->
 
 </beans>

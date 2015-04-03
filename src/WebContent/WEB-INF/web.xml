@@ -23,11 +23,14 @@
         <session-timeout>1400</session-timeout>
     </session-config>
 
+    <!-- lister监听来加载配置 -->
     <listener>
         <display-name>contextLoaderListener</display-name>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!-- <url-pattern>/*</url-pattern> -->
+    <!--  拦截/*，这是一个错误的方式，请求可以走到Action中，但转到jsp时再次被拦截，不能访问到jsp。 -->
     <!-- 
     <filter>
         <display-name>SessionFilter</display-name>
@@ -49,18 +52,26 @@
     </filter-mapping>
      -->
 
+    <!-- DispatcherServlet是前置控制器，DispatcherServlet是一个Servlet,所以可以配置多个DispatcherServlet -->
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <description>mvc.xml</description>
             <param-name>contextConfigLocation</param-name>
+            <!--  其中<param-value>**.xml</param-value> 这里可以使用多种写法
+                1、不写,使用默认值:/WEB-INF/<servlet-name>-servlet.xml
+                2、<param-value>/WEB-INF/classes/springMVC.xml</param-value>
+                3、<param-value>classpath*:springMVC-mvc.xml</param-value>
+                4、多个值用逗号分隔
+             -->
             <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
+        <!--拦截"/"，为了实现REST风格，拦截了所有的请求，那么同时对*.js,*.jpg等静态文件的访问也就被拦截了 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
