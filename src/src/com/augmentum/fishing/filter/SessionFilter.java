@@ -1,7 +1,6 @@
 package com.augmentum.fishing.filter;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,8 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.augmentum.common.util.AppUtil;
-import com.augmentum.common.util.StringUtil;
 import com.augmentum.fishing.Constants;
 import com.augmentum.fishing.Context;
 import com.augmentum.fishing.dto.UserDTO;
@@ -33,7 +30,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO)session.getAttribute(Constants.USER);
-        @SuppressWarnings("unchecked")
+        //@SuppressWarnings("unchecked")
         //List<Role> roles = (List<Role>)session.getAttribute(AppConstants.ROLES);
         //String currentRoleCode = (String) session.getAttribute(AppConstants.CURRENT_ROLE_CODE);
         Context appContext = Context.getContext();
