@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head></head>
-  <body>
-  <p>大家好呀！</p>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I FISHING</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/index.css" rel="stylesheet" />
+    <script src="js/lib/require.js?v=1.2.1" data-main="js/main/index"></script>
+    <script type="text/javascript">
+      var baseURL = "/fishing";
+      var contextPath = "/";
+      var staticURL = "http://127.0.0.1/resource/";
+    </script>
+  </head>
+  <body ng-controller="indexCtrl">
+   <p>大家好呀！{{role}}</p>
   </body>
 </html>
