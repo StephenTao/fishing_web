@@ -1,9 +1,15 @@
 package com.augmentum.common.base;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+
+import com.augmentum.fishing.Constants;
+import com.augmentum.fishing.Context;
+import com.augmentum.fishing.dto.PaginationDTO;
 
 public abstract class BaseDao<T, K> extends SqlSessionDaoSupport {
 
@@ -11,8 +17,8 @@ public abstract class BaseDao<T, K> extends SqlSessionDaoSupport {
     protected static String SQL_ID_UPDATE = ".update";
     protected static String SQL_ID_DELETE = ".delete";
     protected static String SQL_ID_BY_ID = ".getById";
-    //private static final String KEY_OFFSET = "offset";
-    //private static final String KEY_ROW_COUNT = "rowCount";
+    private static final String KEY_OFFSET = "offset";
+    private static final String KEY_ROW_COUNT = "rowCount";
 
     private Class<T> clz;
 
@@ -48,18 +54,17 @@ public abstract class BaseDao<T, K> extends SqlSessionDaoSupport {
         return (List<T>) getSqlSession().selectList(this.getClz().getName() + sqlId, parameters);
     }
 
-//    protected Map<String, Object> getParameterMap() {
-//        Map<String, Object> parameterMap = null;
-//        PaginationDTO<?> paginationDTO = (PaginationDTO<?>) AppContext.getContext().getObject(
-//                AppConstants.PAGINATION_DTO);
-//        if (paginationDTO == null) {
-//            // don't need to pagination
-//            parameterMap = new HashMap<String, Object>();
-//        } else {
-//            parameterMap = paginationDTO.getParameterMap();
-//            parameterMap.put(KEY_OFFSET, paginationDTO.getOffset());
-//            parameterMap.put(KEY_ROW_COUNT, paginationDTO.getRowCount());
-//        }
-//        return parameterMap;
-//    }
+    protected Map<String, Object> getParameterMap() {
+        Map<String, Object> parameterMap = null;
+        PaginationDTO<?> paginationDTO = (PaginationDTO<?>) Context.getContext().getObject(Constants.PAGINATION_DTO);
+        if (paginationDTO == null) {
+            // don't need to pagination
+            parameterMap = new HashMap<String, Object>();
+        } else {
+            parameterMap = paginationDTO.getParameterMap();
+            parameterMap.put(KEY_OFFSET, paginationDTO.getOffset());
+            parameterMap.put(KEY_ROW_COUNT, paginationDTO.getRowCount());
+        }
+        return parameterMap;
+    }
 }

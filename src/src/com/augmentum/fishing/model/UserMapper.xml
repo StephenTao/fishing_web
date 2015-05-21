@@ -5,8 +5,14 @@
     <resultMap type="User" id="userMap">
         <id column="id" property="id" />
         <result column="user_name" property="userName" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="qq" property="qq" />
+        <result column="email" property="email" />
         <result column="password" property="password" />
+        <result column="sex" property="sex" />
         <result column="icon" property="icon" />
+        <result column="signature" property="signature" />
+        <result column="resume" property="resume" />
         <result column="created_time" property="createdTime" />
         <result column="updated_time" property="updatedTime" />
         <result column="is_deleted" property="deleted" />
@@ -15,7 +21,13 @@
     <resultMap type="com.augmentum.fishing.dto.UserDTO" id="userDTOMap">
         <id column="id" property="id" />
         <result column="user_name" property="userName" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="qq" property="qq" />
+        <result column="email" property="email" />
         <result column="password" property="password" />
+        <result column="sex" property="sex" />
+        <result column="signature" property="signature" />
+        <result column="resume" property="resume" />
         <result column="icon" property="icon" />
         <result column="created_time" property="createdTime" />
         <result column="updated_time" property="updatedTime" />
@@ -25,9 +37,9 @@
     <insert id="add" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
             INSERT INTO user
-                (user_name, password, icon, created_time, updated_time)
+                (user_name, phone_number, qq, email, password, sex, signaure, resume, icon, created_time, updated_time)
             VALUES
-                (#{userName}, #{password}, #{icon}, #{createdTime}, #{updatedTime})
+                (#{userName}, #{phoneNumber}, #{qq}, #{email}, #{password}, #{sex}, #{signaure}, #{resume}, #{icon}, #{createdTime}, #{updatedTime})
         ]]>
     </insert>
 

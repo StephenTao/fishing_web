@@ -10,4 +10,6 @@ public interface UserService {
 
     List<UserDTO> findAll();
 
+    Boolean register(UserDTO userDTO);
+
 }

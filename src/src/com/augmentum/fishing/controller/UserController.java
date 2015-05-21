@@ -29,6 +29,12 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public MessageEntry register(@RequestBody UserDTO userDTO) {
+        Boolean result = userService.register(userDTO);
+        return JsonMessage.ok(result);
+    }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public MessageEntry login(@RequestBody UserDTO userDTO, HttpServletRequest request) {
