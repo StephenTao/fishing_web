@@ -71,6 +71,12 @@
     <section class="main">
       <div class="container">
       Welcome {{user.userName}} come my home!
+      <form enctype="multipart/form-data" action="<c:url value='/background/fileOperate/upload.html' />" method="post">
+        <input type="file" name="file1" /> <input type="text" name="alais" /><br />
+        <input type="file" name="file2" /> <input type="text" name="alais" /><br />
+        <input type="file" name="file3" /> <input type="text" name="alais" /><br />
+        <input type="submit" value="上传" />
+      </form>
       </div>
     </section>
     <nav class="navbar navbar-default navbar-fixed-bottom">
